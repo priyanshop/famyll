@@ -1,0 +1,13 @@
+current directory: /Users/imac11/Desktop/FamyllAPP/FamyllApp/vendor/bundle/ruby/3.0.0/gems/json-2.7.1/ext/json
+/Users/imac11/.rvm/rubies/ruby-3.0.0/bin/ruby -I /Users/imac11/.rvm/rubies/ruby-3.0.0/lib/ruby/3.0.0 -r ./siteconf20231226-1526-mw8ycw.rb extconf.rb
+creating Makefile
+
+current directory: /Users/imac11/Desktop/FamyllAPP/FamyllApp/vendor/bundle/ruby/3.0.0/gems/json-2.7.1/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/imac11/Desktop/FamyllAPP/FamyllApp/vendor/bundle/ruby/3.0.0/gems/json-2.7.1/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/imac11/Desktop/FamyllAPP/FamyllApp/vendor/bundle/ruby/3.0.0/gems/json-2.7.1/ext/json
+make "DESTDIR=" install
