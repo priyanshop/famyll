@@ -66,3 +66,5 @@ yarn-error.log
 /coverage
 /ios/Podfile.lock
 yarn.lock
+/node_modules
+node_modules
