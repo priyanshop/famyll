@@ -50,7 +50,7 @@ const SelectUserType = ({navigation,route}:any) => {
   };
 
   const navigateToSignIN = () => {
-    navigation.navigate("SignInScreen");
+    navigation.navigate("Home");
   };
 
   return (

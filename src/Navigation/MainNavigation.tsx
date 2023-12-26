@@ -1,4 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import CompleteProfile from "../Screen/Auth/CompleteProfile";
 import ForgotPassword from "../Screen/Auth/ForgotPassword";
 import ResetPassword from "../Screen/Auth/ResetPassword";
@@ -6,8 +7,34 @@ import SelectUserType from "../Screen/Auth/SelectUserType";
 import SignInScreen from "../Screen/Auth/SignIn";
 import SignUp from "../Screen/Auth/SignUp";
 import VerifyOTP from "../Screen/Auth/VerfiyOTP";
+import TabBar from "./TabBar";
+import HelloWorldApp from "../Screen/index";
+import MyPortfolio from "../Screen/Portfolio/MyPortfolio";
+import MyEarning from "../Screen/MyEarning/MyEarning";
+import MyProfile from "../Screen/Profile/Profile";
+import ChangePassword from "../Screen/Profile/ChangePassword";
 
+type RootStackParamList = {
+  Home: any;
+  Feed: any;
+  Profile: any;
+  Settings: any;
+};
+
+const BottomTab: any = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
+function BottomTabNavigator() {
+  return (
+    <BottomTab.Navigator tabBar={TabBar} screenOptions={{ headerShown: false }}>
+      <BottomTab.Screen name="MyCare" component={MyPortfolio} />
+      <BottomTab.Screen name="Providers" component={MyPortfolio} />
+      <BottomTab.Screen name="MyEarning" component={MyEarning} />
+      <BottomTab.Screen name="Profile" component={MyProfile} />
+    </BottomTab.Navigator>
+  );
+}
+
 function MainNavigator() {
   const forFade = ({ current }: any) => ({
     cardStyle: {
@@ -20,6 +47,22 @@ function MainNavigator() {
       component: SelectUserType,
       options: {
         headerTitle: "SelectUser",
+        headerShown: false,
+      },
+    },
+    {
+      name: "Home",
+      component: BottomTabNavigator,
+      options: {
+        headerTitle: "Home",
+        headerShown: false,
+      },
+    },
+    {
+      name: "ChangePassword",
+      component: ChangePassword,
+      options: {
+        headerTitle: "ChangePassword",
         headerShown: false,
       },
     },
