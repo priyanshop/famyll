@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 import { Images } from "../../assets/index";
 import { Colors } from "../../Helper/Colors";
@@ -7,9 +7,24 @@ import CustomButton from "../../Components/CustomButton";
 import CustomTextInput from "../../Components/CustomTextInput";
 
 const SignInScreen = ({navigation,route}:any) => {
+  const [screenName, setScreenName] = useState("Plan Owner");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  useEffect(() => {
+   if (route.params) {
+    if (route.params.isMember) {
+      setScreenName("Member")
+    }
+    if (route.params.isPlan) {
+      setScreenName("Plan Owner")
+    }
+    if (route.params.isProvider) {
+      setScreenName("Provider")
+    }
+   }
+  }, [route.params])
+  
   const navigateToForgotPassword = () => {
     navigation.navigate("ForgotPassword");
   };
@@ -17,10 +32,15 @@ const SignInScreen = ({navigation,route}:any) => {
   const navigateToSignUp = () => {
     navigation.navigate("SignUp");
   };
+
+  const navigateToHome = () => {
+    navigation.navigate("Home");
+  };
+  
   return (
     <ScrollView style={styles.container}>
       <Image source={Images.AppLogo} resizeMode="contain" style={styles.logo} />
-      <Text style={styles.title}>{"Sign in to Plan Owner"}</Text>
+      <Text style={styles.title}>{"Sign in to "+screenName}</Text>
       <Text style={styles.title2}>{"Enter your details to continue."}</Text>
       <View>
         <CustomTextInput
@@ -39,7 +59,7 @@ const SignInScreen = ({navigation,route}:any) => {
         <View style={styles.forgotView}>
           <Text onPress={navigateToForgotPassword} style={styles.forgtPass}>{"Forgot Password?"}</Text>
         </View>
-        <CustomButton marginTop={50}>Sign In</CustomButton>
+        <CustomButton onPress={navigateToHome} marginTop={50}>Sign In</CustomButton>
         <View>
           <Text style={styles.newAccPass}>
             {"Don’t have an account? "}

@@ -26,6 +26,7 @@ import MakePayment from "../Screen/Payments/MakePayment";
 import CompletePayment from "../Screen/Payments/CompletePayment";
 import UpgradePlan from "../Screen/Plans/UpgradePlan";
 import MemberDetails from "../Screen/Member/MemberDetails";
+import SelectPlanscreen from "../Screen/Plans/SelectPlanScreen";
 
 type RootStackParamList = {
   Home: any;
@@ -59,10 +60,10 @@ function MainNavigator() {
   const screenConfigurations = [
     {
       name: "SelectUser",
-      component: MemberDetails,
+      component: SelectUserType,
       options: {
         headerTitle: "SelectUser",
-        headerShown: true,
+        headerShown: false,
       },
     },
     {
@@ -134,6 +135,14 @@ function MainNavigator() {
       component: MemberDetails,
       options: {
         headerTitle: "MemberDetails",
+        headerShown: true,
+      },
+    },
+    {
+      name: "SelectPlanscreen",
+      component: SelectPlanscreen,
+      options: {
+        headerTitle: "SelectPlanscreen",
         headerShown: true,
       },
     },

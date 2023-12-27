@@ -136,6 +136,10 @@ const AddMemberScreen = ({ navigation, route }: any) => {
     navigation.navigate("SelectMember");
   };
 
+  const navigateToSelectPlanscreen = () => {
+    navigation.navigate("SelectPlanscreen");
+  };
+
   return (
     <SafeAreaView style={{ backgroundColor: Colors.bg, flex: 1 }}>
       <ScrollView style={styles.container}>
@@ -328,7 +332,7 @@ const AddMemberScreen = ({ navigation, route }: any) => {
                       </Text>
                     </View>
                     <View style={styles.lowRow}>
-                      <TouchableOpacity style={styles.ViewBtn}>
+                      <TouchableOpacity onPress={navigateToSelectPlanscreen} style={styles.ViewBtn}>
                         <Text style={styles.viewPlanTxt}>{"View Plan"}</Text>
                       </TouchableOpacity>
                     </View>

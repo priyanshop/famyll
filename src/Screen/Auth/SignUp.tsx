@@ -25,8 +25,14 @@ const SignUp = ({ navigation, route }: any) => {
   const [country, setCountry] = useState("");
   const [legalAuthority, setLegalAuthority] = useState(false);
   const [signature, setSignature] = useState("");
-  const navigateToVerfyOTP = () => {};
+  const navigateToHome = () => {
+    navigation.navigate("Home");
 
+  };
+
+  const navigateToSignInScreen = () => {
+    navigation.navigate("SignInScreen");
+  };
   return (
     <ScrollView style={styles.container}>
       <Image source={Images.AppLogo} resizeMode="contain" style={styles.logo} />
@@ -110,13 +116,13 @@ const SignUp = ({ navigation, route }: any) => {
             </Text>
           </View>
         </View>
-        <CustomButton onPress={navigateToVerfyOTP} marginTop={25}>
+        <CustomButton onPress={navigateToHome} marginTop={25}>
           Create Account
         </CustomButton>
         <View>
           <Text style={styles.newAccPass}>
             {"Already have an account? "}
-            <Text style={styles.forgtPass}>{"Sign In"}</Text>
+            <Text onPress={navigateToSignInScreen} style={styles.forgtPass}>{"Sign In"}</Text>
           </Text>
         </View>
       </View>
