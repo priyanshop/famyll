@@ -10,6 +10,7 @@ import {
   FlatList,
 } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
+import Entypo from "react-native-vector-icons/Entypo";
 import CustomHeader from "../../Components/CustomHeader";
 import { Colors } from "../../Helper/Colors";
 
@@ -93,7 +94,7 @@ const CustomInfo1 = ({ label, value }: any) => {
   );
 };
 
-const ProviderList = ({ navigation, route }: any) => {
+const ProviderDetails = ({ navigation, route }: any) => {
   const [expandedSections, setExpandedSections] = useState({
     "0": true,
     "1": true,
@@ -111,7 +112,12 @@ const ProviderList = ({ navigation, route }: any) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      header: (props) => <CustomHeader navigation={navigation} />,
+      header: (props) => (
+        <CustomHeader
+          title={route?.params?.toAdd ? "Add Member" : "Provider Details"}
+          navigation={navigation}
+        />
+      ),
     });
   }, [navigation, route]);
 
@@ -139,12 +145,34 @@ const ProviderList = ({ navigation, route }: any) => {
     <CustomInfo1 label={item.type} value={item.value} />
   );
 
+  const navigateTo = () => {
+    navigation.navigate("MakePayment");
+  };
+
+
   return (
     <SafeAreaView style={{ backgroundColor: Colors.bg, flex: 1 }}>
       <ScrollView style={styles.container}>
         <View style={{ marginTop: 5, paddingBottom: 50 }}>
           <View style={styles.contactInfo}>
             <View>
+              {route?.params?.toAdd && <View style={styles.newHeader}>
+                <View style={styles.innerHeader}>
+                  <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Entypo
+                      name="chevron-thin-left"
+                      size={18}
+                      color="#332640"
+                    />
+                  </TouchableOpacity>
+                  <Text style={styles.welcome2}>{"  Back to Member"}</Text>
+                </View>
+                <View>
+                  <TouchableOpacity onPress={navigateTo} style={styles.skipBtn}>
+                    <Text style={styles.skipText}>{"Select"}</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>}
               <EmployeeCard
                 {...{ name: "Alena Smith", id: "#FML1000M", status: "Covered" }}
               />
@@ -190,7 +218,7 @@ const ProviderList = ({ navigation, route }: any) => {
   );
 };
 
-export default ProviderList;
+export default ProviderDetails;
 
 const styles = StyleSheet.create({
   container: {
@@ -201,17 +229,6 @@ const styles = StyleSheet.create({
   container2: {
     justifyContent: "space-between",
   },
-  headerView: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  innerHeader: {
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
-  },
-  serachView: { flexDirection: "row", justifyContent: "space-between" },
   welcome: {
     fontSize: 23,
     fontWeight: "bold",
@@ -226,20 +243,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderRadius: 16,
     padding: 16,
-    // marginVertical: 10,
-  },
-  logoutIcon: {
-    height: 24,
-    width: 24,
-  },
-  forgotView: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-  },
-  forgtPass: {
-    fontSize: 17,
-    fontWeight: "bold",
-    color: Colors.primaryColor,
   },
   card: {
     flexDirection: "row",
@@ -315,5 +318,33 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 10,
     marginTop: 10,
+  },
+  innerHeader: {
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  skipText: {
+    color: Colors.primaryColor,
+    fontSize: 14,
+    fontWeight: "700",
+  },
+  skipBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 8,
+    borderRadius: 25,
+    borderColor: Colors.primaryColor,
+    justifyContent: "center",
+    marginTop: 5,
+    borderWidth: 1.5,
+    flex: 1,
+    marginHorizontal: 5,
+    paddingHorizontal: 12,
+  },
+  newHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });

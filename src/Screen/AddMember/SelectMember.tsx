@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import {
   View,
   Text,
@@ -8,10 +8,11 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
-import { Images } from "../../assets/index";
+import { Overlay } from "react-native-elements";
 import { Colors } from "../../Helper/Colors";
 import CustomDropdown from "../../Components/CustomDropdown";
-import CustomImageButton from "../../Components/CustomImageButton";
+import CustomHeader from "../../Components/CustomHeader";
+import CustomButton from "../../Components/CustomButton";
 
 const EmployeeList = [
   { name: "Alena Smith", id: "#FML1000M", status: "Covered" },
@@ -39,29 +40,55 @@ const CustomInfo = ({ label, value }: any) => {
   );
 };
 
-const Providers = ({ navigation, route }: any) => {
+const SelectMember = ({ navigation, route }: any) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      header: (props) => (
+        <CustomHeader title={"Add Member"} navigation={navigation} />
+      ),
+    });
+  }, [navigation, route]);
+
   const navigateTo = () => {
-    navigation.navigate("ProviderDetails");
+    navigation.navigate("ProviderDetails", {
+      toAdd: true,
+    });
+  };
+
+  const onBackdropPress = () => {
+    setIsVisible(!isVisible);
   };
 
   const EmployeeCard = ({ name, id, status }: any) => (
     <View style={styles.card}>
-      <View style={styles.imageView}>
-        <Image
-          source={{
-            uri: "https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
-          }}
-          style={styles.image}
-          resizeMode={"cover"}
-        />
+      <View style={styles.contentView}>
+        <View style={styles.imageView}>
+          <Image
+            source={{
+              uri: "https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
+            }}
+            style={styles.image}
+            resizeMode={"cover"}
+          />
+        </View>
+        <View style={styles.details}>
+          <Text style={styles.welcome}>{name}</Text>
+          <CustomInfo label="Email : " value="martin@yopmail.com" />
+          <CustomInfo label="Phone : " value="9586541235" />
+          <CustomInfo label="City :  " value="Chicago" />
+        </View>
       </View>
-      <View style={styles.details}>
-        <Text style={styles.welcome}>{name}</Text>
-        <CustomInfo label="Email : " value="martin@yopmail.com" />
-        <CustomInfo label="Phone : " value="9586541235" />
-        <CustomInfo label="City :  " value="Chicago" />
+      <View style={styles.btnView}>
+        <TouchableOpacity onPress={onBackdropPress} style={styles.selectBtn}>
+          <Text style={styles.selectText}>Select</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={navigateTo} style={styles.button}>
           <Text style={styles.buttonText}>View Details</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={navigateTo} style={styles.skipBtn}>
+          <Text style={styles.skipText}>Skip</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -70,27 +97,20 @@ const Providers = ({ navigation, route }: any) => {
   return (
     <SafeAreaView style={{ backgroundColor: Colors.bg, flex: 1 }}>
       <ScrollView style={styles.container}>
-        <View style={styles.headerView}>
+        <View style={{ marginTop: 0, paddingBottom: 120 }}>
           <View>
-            <Text style={styles.welcome}>Providers</Text>
-          </View>
-          <View style={styles.serachView}>
-            <CustomImageButton imageSource={Images.searchnormal} />
-            <CustomImageButton imageSource={Images.notification} />
-          </View>
-        </View>
-        <View style={{ marginTop: 10, paddingBottom: 120 }}>
-          <View>
-            <Text style={styles.welcome2}>Providers List</Text>
+            <Text style={styles.welcome2}>
+              Select Your General Practitioner
+            </Text>
           </View>
 
-          <CustomDropdown
+          {/* <CustomDropdown
             data={data}
             onSelect={(selectedItem) => {
               console.log("Selected Item:", selectedItem);
             }}
             placeholder={"Provider Type"}
-          />
+          /> */}
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
@@ -121,11 +141,32 @@ const Providers = ({ navigation, route }: any) => {
           ))}
         </View>
       </ScrollView>
+      <Overlay
+        animationType={"slide"}
+        isVisible={isVisible}
+        onBackdropPress={onBackdropPress}
+        overlayStyle={styles.bottomSheetContainer}
+      >
+        <View style={styles.SureView}>
+          <Text style={styles.welcome}>{"Are You Sure?"}</Text>
+        </View>
+        <View style={styles.desctiptionView}>
+          <Text style={styles.countineTxt}>
+            {"Are you sure you want to continue this provider?"}
+          </Text>
+        </View>
+        <View style={{ padding: 10 }}>
+          <CustomButton marginTop={20}>{"Complete Payment"}</CustomButton>
+          <TouchableOpacity onPress={onBackdropPress} style={styles.cancelBtn}>
+            <Text style={styles.cancelTxt}>{"Cancel"}</Text>
+          </TouchableOpacity>
+        </View>
+      </Overlay>
     </SafeAreaView>
   );
 };
 
-export default Providers;
+export default SelectMember;
 
 const styles = StyleSheet.create({
   container: {
@@ -165,7 +206,7 @@ const styles = StyleSheet.create({
     fontWeight: "400",
   },
   card: {
-    flexDirection: "row",
+    // flexDirection: "row",
     marginVertical: 5,
     padding: 10,
     backgroundColor: "#fff",
@@ -185,10 +226,21 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 5,
+    flex: 1,
+    marginHorizontal: 5,
   },
   buttonText: {
     color: "#0B1B22",
+    fontSize: 14,
+    fontWeight: "700",
+  },
+  selectText: {
+    color: "#fff",
+    fontSize: 14,
+    fontWeight: "700",
+  },
+  skipText: {
+    color: Colors.primaryColor,
     fontSize: 14,
     fontWeight: "700",
   },
@@ -230,5 +282,85 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     marginVertical: 5,
+  },
+  selectBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 13,
+    borderRadius: 25,
+    backgroundColor: Colors.primaryColor,
+    justifyContent: "center",
+    marginTop: 5,
+    flex: 1,
+    marginHorizontal: 5,
+  },
+  skipBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 13,
+    borderRadius: 25,
+    borderColor: Colors.primaryColor,
+    justifyContent: "center",
+    marginTop: 5,
+    borderWidth: 1.5,
+    flex: 1,
+    marginHorizontal: 5,
+  },
+  btnView: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 5,
+  },
+  contentView: {
+    flexDirection: "row",
+    flex: 1,
+  },
+  bottomSheetContainer: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: "35%",
+    backgroundColor: "#F8FAFE",
+    width: "100%",
+    paddingBottom: 0,
+    paddingHorizontal: 0,
+    borderTopRightRadius: 16,
+    borderTopLeftRadius: 16,
+    padding: 15,
+  },
+  countineTxt: {
+    fontSize: 17,
+    fontWeight: "400",
+    color: "#574766",
+    textAlign: "center",
+    paddingHorizontal: 20,
+  },
+  cancelBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: 30,
+    width: "100%",
+    padding: 16,
+    marginVertical: 5,
+    backgroundColor: "#EBF3F7",
+    justifyContent: "center",
+  },
+  cancelTxt: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#0B1B22",
+  },
+  desctiptionView: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 15,
+  },
+  SureView: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 15,
   },
 });

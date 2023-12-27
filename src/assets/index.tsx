@@ -8,4 +8,5 @@ export const Images = {
   searchnormal: require("./Image/searchnormal.png"),
   calendar: require("./Image/calendar.png"),
   Logout: require("./Image/Logout.png"),
+  planbg: require("./Image/planbg.png"),
 };

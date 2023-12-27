@@ -15,6 +15,7 @@ import { BottomTabNavigationEventMap } from "@react-navigation/bottom-tabs";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { Colors } from "../Helper/Colors";
 import { Images } from "../assets/index";
+import FloatingButton from "../Components/FloatingButton";
 export const routes = {
   mycare: { name: "MyCare", icon: Images.MyCare },
   providers: { name: "Providers", icon: Images.Providers },
@@ -121,6 +122,7 @@ const TabBarComponent = ({ state, navigation, descriptors }: any) => {
           </Pressable>
         );
       })}
+      <FloatingButton onPress={() => {navigation.navigate("AddMemberScreen")}} />
     </>
   );
 };

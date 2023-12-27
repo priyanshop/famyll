@@ -14,12 +14,15 @@ import MyEarning from "../Screen/MyEarning/MyEarning";
 import MyProfile from "../Screen/Profile/Profile";
 import ChangePassword from "../Screen/Profile/ChangePassword";
 import Providers from "../Screen/Provider/Providers";
-import ProviderList from "../Screen/Provider/ProvidersList";
 import { Images } from "../assets";
 import CustomImageButton from "../Components/CustomImageButton";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Entypo from "react-native-vector-icons/Entypo";
 import { Colors } from "../Helper/Colors";
+import AddMemberScreen from "../Screen/AddMember/AddMemberScreen";
+import ProviderDetails from "../Screen/Provider/ProviderDetails";
+import SelectMember from "../Screen/AddMember/SelectMember";
+import MakePayment from "../Screen/Payments/MakePayment";
 
 type RootStackParamList = {
   Home: any;
@@ -76,10 +79,34 @@ function MainNavigator() {
       },
     },
     {
-      name: "ProviderList",
-      component: ProviderList,
+      name: "ProviderDetails",
+      component: ProviderDetails,
       options: {
-        headerTitle: "ProviderList",
+        headerTitle: "ProviderDetails",
+        headerShown: true,
+      },
+    },
+    {
+      name: "AddMemberScreen",
+      component: AddMemberScreen,
+      options: {
+        headerTitle: "AddMemberScreen",
+        headerShown: true,
+      },
+    },
+    {
+      name: "SelectMember",
+      component: SelectMember,
+      options: {
+        headerTitle: "SelectMember",
+        headerShown: true,
+      },
+    },
+    {
+      name: "MakePayment",
+      component: MakePayment,
+      options: {
+        headerTitle: "MakePayment",
         headerShown: true,
       },
     },

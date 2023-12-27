@@ -6,11 +6,11 @@ import { Colors } from "../Helper/Colors";
 
 const CustomTextInput = ({
   label,
-  secureTextEntry =false,
+  secureTextEntry = false,
   value,
   onChangeText,
-  placeholderText,
-  error,
+  placeholderText = "",
+  error = "",
 }) => {
   const [isSecure, setIsSecure] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
@@ -32,8 +32,8 @@ const CustomTextInput = ({
       style={{
         flexDirection: "column",
         marginVertical: 8,
-        flex:1,
-        marginHorizontal:5
+        flex: 1,
+        marginHorizontal: 5,
       }}
     >
       <Text
