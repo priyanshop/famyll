@@ -13,6 +13,13 @@ import MyPortfolio from "../Screen/Portfolio/MyPortfolio";
 import MyEarning from "../Screen/MyEarning/MyEarning";
 import MyProfile from "../Screen/Profile/Profile";
 import ChangePassword from "../Screen/Profile/ChangePassword";
+import Providers from "../Screen/Provider/Providers";
+import ProviderList from "../Screen/Provider/ProvidersList";
+import { Images } from "../assets";
+import CustomImageButton from "../Components/CustomImageButton";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import Entypo from "react-native-vector-icons/Entypo";
+import { Colors } from "../Helper/Colors";
 
 type RootStackParamList = {
   Home: any;
@@ -24,11 +31,13 @@ type RootStackParamList = {
 const BottomTab: any = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
+
+
 function BottomTabNavigator() {
   return (
     <BottomTab.Navigator tabBar={TabBar} screenOptions={{ headerShown: false }}>
       <BottomTab.Screen name="MyCare" component={MyPortfolio} />
-      <BottomTab.Screen name="Providers" component={MyPortfolio} />
+      <BottomTab.Screen name="Providers" component={Providers} />
       <BottomTab.Screen name="MyEarning" component={MyEarning} />
       <BottomTab.Screen name="Profile" component={MyProfile} />
     </BottomTab.Navigator>
@@ -64,6 +73,14 @@ function MainNavigator() {
       options: {
         headerTitle: "ChangePassword",
         headerShown: false,
+      },
+    },
+    {
+      name: "ProviderList",
+      component: ProviderList,
+      options: {
+        headerTitle: "ProviderList",
+        headerShown: true,
       },
     },
     {
@@ -130,3 +147,47 @@ function MainNavigator() {
   );
 }
 export default MainNavigator;
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+    backgroundColor: Colors.bg,
+    flexGrow: 1,
+  },
+  headerView: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  innerHeader: {
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  serachView: { flexDirection: "row", justifyContent: "space-between" },
+  welcome: {
+    fontSize: 23,
+    fontWeight: "bold",
+    color: "#000",
+  },
+
+  contactInfo: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
+    padding: 16,
+    marginVertical: 10,
+  },
+  logoutIcon: {
+    height: 24,
+    width: 24,
+  },
+  forgotView: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  forgtPass: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: Colors.primaryColor,
+  },
+});

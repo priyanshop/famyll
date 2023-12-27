@@ -22,9 +22,11 @@ const CustomInfo = ({ label, value }: any) => {
 };
 
 const MyProfile = ({ navigation, route }: any) => {
+
   const navigateToChangePassword = () => {
     navigation.navigate("ChangePassword");
   };
+
   const EmployeeCard = ({ name, id, status }: any) => (
     <View style={styles.profileCard}>
       <View style={styles.coverImage} />
@@ -50,6 +52,7 @@ const MyProfile = ({ navigation, route }: any) => {
       </View>
     </View>
   );
+  
   return (
     <SafeAreaView style={{ backgroundColor: Colors.bg, flex: 1 }}>
       <ScrollView style={styles.container}>
@@ -108,7 +111,7 @@ export default MyProfile;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 15,
     backgroundColor: Colors.bg,
     flexGrow: 1,
   },

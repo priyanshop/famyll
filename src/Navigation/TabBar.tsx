@@ -3,9 +3,7 @@ import React from 'react';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import TabBarComponent from './TabBarComponent';
 
-const TabBar = ({ state, navigation, descriptors }: BottomTabBarProps) => {
-    console.log("SSSSS",state);
-    
+const TabBar = ({ state, navigation, descriptors }: BottomTabBarProps) => {    
   return (
     <View style={styles.tabBarStyle}>
       <TabBarComponent
@@ -27,10 +25,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    bottom: 40, // here you can use the bottom inset for more flexbility
+    bottom: 0, // here you can use the bottom inset for more flexbility
     left: 0,
     right: 0,
-    height: 60,
+    height: 80,
     flex: 1,
     elevation: 0,
     // borderRadius: 15,

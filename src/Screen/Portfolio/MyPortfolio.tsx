@@ -80,7 +80,7 @@ export default MyPortfolio;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 15,
     backgroundColor: Colors.bg,
     flex: 1,
   },

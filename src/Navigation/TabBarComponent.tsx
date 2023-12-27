@@ -91,7 +91,7 @@ const TabBarComponent = ({ state, navigation, descriptors }: any) => {
         };
         const routeName = route.name.toLowerCase() as keyof typeof routes;
         const icon = routes[routeName]?.icon;
-        console.log("state.routes", route.name, routeName, icon, routes);
+        // console.log("state.routes", route.name, routeName, icon, routes);
 
         return (
           <Pressable

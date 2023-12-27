@@ -68,7 +68,7 @@ export default MyEarning;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 15,
     backgroundColor: Colors.bg,
     flex: 1,
   },
@@ -104,11 +104,6 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "#fff",
     borderRadius: 12,
-    // shadowColor: "#000",
-    // shadowOffset: { width: 0, height: 1 },
-    // shadowOpacity: 0.8,
-    // shadowRadius: 2,
-    // elevation: 5,
   },
   image: {
     width: 40,
