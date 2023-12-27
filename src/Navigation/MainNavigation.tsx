@@ -24,6 +24,7 @@ import ProviderDetails from "../Screen/Provider/ProviderDetails";
 import SelectMember from "../Screen/AddMember/SelectMember";
 import MakePayment from "../Screen/Payments/MakePayment";
 import CompletePayment from "../Screen/Payments/CompletePayment";
+import UpgradePlan from "../Screen/Plans/UpgradePlan";
 
 type RootStackParamList = {
   Home: any;
@@ -116,6 +117,14 @@ function MainNavigator() {
       component: CompletePayment,
       options: {
         headerTitle: "CompletePayment",
+        headerShown: true,
+      },
+    },
+    {
+      name: "UpgradePlan",
+      component: UpgradePlan,
+      options: {
+        headerTitle: "UpgradePlan",
         headerShown: true,
       },
     },
