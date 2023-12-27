@@ -44,7 +44,6 @@ const plan = [
   },
 ];
 
-
 const UpgradePlan = ({ navigation, route }: any) => {
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -53,7 +52,6 @@ const UpgradePlan = ({ navigation, route }: any) => {
       ),
     });
   }, [navigation, route]);
-
 
   const navigateTo = () => {
     navigation.navigate("SelectMember");
@@ -98,11 +96,15 @@ const UpgradePlan = ({ navigation, route }: any) => {
                     style={styles.cardView}
                   >
                     <View style={styles.cardFirstRow}>
-                      <Text style={styles.planName}>{item.Plan}</Text>
-                      <Text style={styles.planPrice}>
-                        {item["Monthly Price"]}
-                        <Text style={styles.planOri}>{"/Month"}</Text>
-                      </Text>
+                      <View style={{ flex: 0.5 }}>
+                        <Text style={styles.planName}>{item.Plan}</Text>
+                      </View>
+                      <View style={{ flex: 0.5, alignItems: "flex-end" }}>
+                        <Text style={styles.planPrice}>
+                          {item["Monthly Price"]}
+                          <Text style={styles.planOri}>{"/Month"}</Text>
+                        </Text>
+                      </View>
                     </View>
                     <View style={styles.annualView}>
                       <Text style={styles.annualPriceTxt}>

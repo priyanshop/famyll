@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { Checkbox, RadioButton } from "react-native-paper";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import Octicons from "react-native-vector-icons/Octicons";
 import { Images } from "../../assets";
 import CustomButton from "../../Components/CustomButton";
 import CustomDropdown1 from "../../Components/CustomDropDown1";
@@ -105,7 +106,10 @@ const AddMemberScreen = ({ navigation, route }: any) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       header: (props) => (
-        <CustomHeader title={"Add Member"} navigation={navigation} />
+        <CustomHeader
+          title={route.params?.isEdit ? "Edit Member" : "Add Member"}
+          navigation={navigation}
+        />
       ),
     });
   }, [navigation, route]);
@@ -298,13 +302,22 @@ const AddMemberScreen = ({ navigation, route }: any) => {
               </View>
               <View>
                 {plan.map((item) => (
-                  <ImageBackground source={Images.planbg} resizeMode={"cover"} imageStyle={styles.cardImgView} style={styles.cardView}>
+                  <ImageBackground
+                    source={Images.planbg}
+                    resizeMode={"cover"}
+                    imageStyle={styles.cardImgView}
+                    style={styles.cardView}
+                  >
                     <View style={styles.cardFirstRow}>
-                      <Text style={styles.planName}>{item.Plan}</Text>
-                      <Text style={styles.planPrice}>
-                        {item["Monthly Price"]}
-                        <Text style={styles.planOri}>{"/Month"}</Text>
-                      </Text>
+                      <View style={{flex:0.5}}>
+                        <Text style={styles.planName}>{item.Plan}</Text>
+                      </View>
+                      <View style={{flex:0.5, alignItems:'flex-end'}}>
+                        <Text style={styles.planPrice}>
+                          {item["Monthly Price"]}
+                          <Text style={styles.planOri}>{"/Month"}</Text>
+                        </Text>
+                      </View>
                     </View>
                     <View style={styles.annualView}>
                       <Text style={styles.annualPriceTxt}>
@@ -321,6 +334,17 @@ const AddMemberScreen = ({ navigation, route }: any) => {
                     </View>
                   </ImageBackground>
                 ))}
+                <View>
+                  <View style={styles.low2Row}>
+                    <Octicons name={"dot-fill"} size={14} color={"#574766"} />
+                    <Text style={styles.selectedCheck}>{" Note:"}</Text>
+                  </View>
+                  <Text style={styles.unSelectedCheck2}>
+                    {
+                      "The following items cannot be added after plan is bought: MRI, Radiation Therapy, Chemotherapy, and Hospitalization. You will be able to add during plan renewal open window."
+                    }
+                  </Text>
+                </View>
                 <View
                   style={[
                     styles.checkboxContainer,
@@ -336,7 +360,9 @@ const AddMemberScreen = ({ navigation, route }: any) => {
                     {"Display plan owner's name on this membership card."}
                   </Text>
                 </View>
-                <CustomButton onPress={navigateTo} marginTop={20}>Submit</CustomButton>
+                <CustomButton onPress={navigateTo} marginTop={20}>
+                  Submit
+                </CustomButton>
               </View>
             </View>
           </View>
@@ -535,5 +561,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "400",
     color: "#7E7585",
+  },
+  unSelectedCheck2: {
+    fontSize: 16,
+    fontWeight: "400",
+    color: "#574766",
+  },
+  low2Row: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 15,
   },
 });

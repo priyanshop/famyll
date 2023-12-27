@@ -10,4 +10,5 @@ export const Images = {
   Logout: require("./Image/Logout.png"),
   planbg: require("./Image/planbg.png"),
   VisaCard: require("./Image/VisaCard.png"),
+  MembershipCard: require("./Image/MembershipCard.png"),
 };

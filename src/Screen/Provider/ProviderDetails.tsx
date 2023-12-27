@@ -201,7 +201,6 @@ const ProviderDetails = ({ navigation, route }: any) => {
                         numColumns={2}
                         contentContainerStyle={styles.container2}
                         style={{
-                          paddingHorizontal: 15,
                           backgroundColor: "#FFF",
                         }}
                       />

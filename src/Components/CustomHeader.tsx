@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, TouchableOpacity, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  StyleSheet,
+} from "react-native";
 import Entypo from "react-native-vector-icons/Entypo";
 import { Images } from "../assets";
 import { Colors } from "../Helper/Colors";
@@ -22,18 +28,18 @@ export const CustomHeader = ({ navigation, title }) => {
   );
 };
 
-const styles = {
+const styles = StyleSheet.create({
   headerView: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginHorizontal: 20,
     backgroundColor: Colors.bg,
   },
   innerHeader: {
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
+    marginLeft: 15,
   },
   welcome: {
     fontSize: 23,
@@ -45,7 +51,8 @@ const styles = {
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 7.5,
+    marginRight: 15,
   },
-};
+});
 
 export default CustomHeader;
