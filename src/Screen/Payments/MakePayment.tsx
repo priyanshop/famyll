@@ -66,6 +66,10 @@ const MakePayment = ({ navigation, route }: any) => {
     <CustomInfo1 label={item.type} value={item.value} />
   );
 
+  const navigateToCompletePayment = () => {
+    navigation.navigate("CompletePayment");
+  };
+
   return (
     <SafeAreaView style={{ backgroundColor: Colors.bg, flex: 1 }}>
       <ScrollView style={styles.container}>
@@ -112,7 +116,7 @@ const MakePayment = ({ navigation, route }: any) => {
           <TouchableOpacity style={styles.skipBtn}>
             <Text style={styles.skipText}>{"Add More Member"}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.skipBtn2}>
+          <TouchableOpacity onPress={navigateToCompletePayment} style={styles.skipBtn2}>
             <Text style={styles.skipText2}>{"Complete Payment"}</Text>
           </TouchableOpacity>
         </View>

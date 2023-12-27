@@ -23,6 +23,7 @@ import AddMemberScreen from "../Screen/AddMember/AddMemberScreen";
 import ProviderDetails from "../Screen/Provider/ProviderDetails";
 import SelectMember from "../Screen/AddMember/SelectMember";
 import MakePayment from "../Screen/Payments/MakePayment";
+import CompletePayment from "../Screen/Payments/CompletePayment";
 
 type RootStackParamList = {
   Home: any;
@@ -107,6 +108,14 @@ function MainNavigator() {
       component: MakePayment,
       options: {
         headerTitle: "MakePayment",
+        headerShown: true,
+      },
+    },
+    {
+      name: "CompletePayment",
+      component: CompletePayment,
+      options: {
+        headerTitle: "CompletePayment",
         headerShown: true,
       },
     },

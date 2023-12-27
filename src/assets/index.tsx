@@ -9,4 +9,5 @@ export const Images = {
   calendar: require("./Image/calendar.png"),
   Logout: require("./Image/Logout.png"),
   planbg: require("./Image/planbg.png"),
+  VisaCard: require("./Image/VisaCard.png"),
 };
