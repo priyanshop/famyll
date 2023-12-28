@@ -3,11 +3,13 @@ import {
   View,
   Text,
   Image,
+  TouchableOpacity,
   ScrollView,
   StyleSheet,
   SafeAreaView,
 } from "react-native";
 import { Images } from "../../assets/index";
+import CustomButton from "../../Components/CustomButton";
 import CustomClip from "../../Components/CustomClip";
 import CustomImageButton from "../../Components/CustomImageButton";
 import { Colors } from "../../Helper/Colors";
@@ -20,51 +22,72 @@ const EmployeeList = [
   { name: "Kevin Rohds", id: "#FML1004M", status: "Covered" },
 ];
 
-const EmployeeCard = ({ name, id, status }: any) => (
-  <View style={styles.card}>
-    <View style={styles.imageView}>
-      <Image
-        source={{
-          uri: "https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
-        }}
-        style={styles.image}
-      />
-    </View>
-    <View style={styles.details}>
-      <Text style={styles.nameText}>{name}</Text>
-      <Text style={styles.idText}>{id}</Text>
-      <CustomClip color={Colors[status]} status={status} />
-    </View>
-    <View style={styles.viewBtn}>
-      <Text style={styles.buttonText}>{"$ 5000"}</Text>
-    </View>
-  </View>
-);
 
-const MyEarning = () => {
+
+const ProviderPortfolio = ({ navigation, route }: any) => {
+  const navigateTo = () => {
+    navigation.navigate("MemberDetails", {
+      isProvider: true,
+    });
+  };
+  const navigateToSubmitClaim = () => {
+    navigation.navigate("SubmitClaim");
+  };
+  const EmployeeCard = ({ name, id, status }: any) => (
+    <View style={styles.card}>
+      <View style={styles.imageView}>
+        <Image
+          source={{
+            uri: "https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
+          }}
+          style={styles.image}
+        />
+      </View>
+      <View style={styles.details}>
+        <Text style={styles.nameText}>{name}</Text>
+        <Text style={styles.idText}>{id}</Text>
+        <CustomClip color={Colors[status]} status={status} />
+      </View>
+      <View style={styles.viewBtn}>
+        <TouchableOpacity onPress={navigateTo} style={styles.button}>
+          <Text style={styles.buttonText}>View Details</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
   return (
     <SafeAreaView style={{ backgroundColor: Colors.bg, flex: 1 }}>
       <ScrollView style={styles.container}>
         <View style={styles.headerView}>
           <View>
-            <Text style={styles.welcome}>My Earnings</Text>
+            <Text style={styles.welcome}>Welcome,</Text>
+            <Text style={styles.profileName}>
+              Sinon Tech LLC <Text style={styles.hand}>✋</Text>
+            </Text>
           </View>
           <View style={styles.serachView}>
             <CustomImageButton imageSource={Images.searchnormal} />
             <CustomImageButton imageSource={Images.notification} />
           </View>
         </View>
-        <View style={{ marginTop: 10 }}>
-          {EmployeeList.map((employee) => (
-            <EmployeeCard {...employee} key={employee.id} />
-          ))}
+        <View style={styles.dateView}>
+          <Image
+            source={Images.calendar}
+            resizeMode={"contain"}
+            style={styles.calenderIcon}
+          />
+          <Text style={styles.date}> 16th August, 2023. Monday.</Text>
         </View>
+        <CustomButton onPress={navigateToSubmitClaim} marginTop={5}>{"Submit Claim"}</CustomButton>
+        {EmployeeList.map((employee) => (
+          <EmployeeCard {...employee} key={employee.id} />
+        ))}
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default MyEarning;
+export default ProviderPortfolio;
 
 const styles = StyleSheet.create({
   container: {
@@ -79,7 +102,12 @@ const styles = StyleSheet.create({
   },
   serachView: { flexDirection: "row", justifyContent: "space-between" },
   calenderIcon: { height: 24, width: 24 },
-  dateView: { flexDirection: "row", alignItems: "center", marginTop: 5 },
+  dateView: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 5,
+    marginVertical: 15,
+  },
   welcome: {
     fontSize: 23,
     fontWeight: "bold",
@@ -121,9 +149,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonText: {
-    color: Colors.primaryColor,
-    fontSize: 18,
-    fontWeight: "700",
+    color: "#0B1B22",
+    fontSize: 14,
+    fontWeight: "600",
   },
   nameText: {
     color: "#332640",
@@ -142,8 +170,6 @@ const styles = StyleSheet.create({
   },
   viewBtn: {
     flex: 0.3,
-    justifyContent: "center",
-    alignItems: "flex-end",
   },
   imageView: {
     flex: 0.2,

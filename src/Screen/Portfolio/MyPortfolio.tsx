@@ -80,7 +80,7 @@ export default MyPortfolio;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 15,
     backgroundColor: Colors.bg,
     flex: 1,
   },
@@ -91,7 +91,12 @@ const styles = StyleSheet.create({
   },
   serachView: { flexDirection: "row", justifyContent: "space-between" },
   calenderIcon: { height: 24, width: 24 },
-  dateView: { flexDirection: "row", alignItems: "center", marginTop: 5 },
+  dateView: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 5,
+    marginVertical: 15,
+  },
   welcome: {
     fontSize: 23,
     fontWeight: "bold",

@@ -1,9 +1,9 @@
 import { StyleSheet, View } from 'react-native';
 import React from 'react';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import TabBarComponent from './TabBarComponent';
+import TabBarComponent from './ProviderComponent';
 
-const TabBar = ({ state, navigation, descriptors }: BottomTabBarProps) => {    
+const ProviderTabBar = ({ state, navigation, descriptors }: BottomTabBarProps) => {    
   return (
     <View style={styles.tabBarStyle}>
       <TabBarComponent
@@ -15,7 +15,7 @@ const TabBar = ({ state, navigation, descriptors }: BottomTabBarProps) => {
   );
 };
 
-export default TabBar;
+export default ProviderTabBar;
 
 const styles = StyleSheet.create({
   tabBarStyle: {

@@ -13,24 +13,72 @@ import MyPortfolio from "../Screen/Portfolio/MyPortfolio";
 import MyEarning from "../Screen/MyEarning/MyEarning";
 import MyProfile from "../Screen/Profile/Profile";
 import ChangePassword from "../Screen/Profile/ChangePassword";
-
-type RootStackParamList = {
-  Home: any;
-  Feed: any;
-  Profile: any;
-  Settings: any;
-};
+import Providers from "../Screen/Provider/Providers";
+import { Images } from "../assets";
+import CustomImageButton from "../Components/CustomImageButton";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import Entypo from "react-native-vector-icons/Entypo";
+import { Colors } from "../Helper/Colors";
+import AddMemberScreen from "../Screen/AddMember/AddMemberScreen";
+import ProviderDetails from "../Screen/Provider/ProviderDetails";
+import SelectMember from "../Screen/AddMember/SelectMember";
+import MakePayment from "../Screen/Payments/MakePayment";
+import CompletePayment from "../Screen/Payments/CompletePayment";
+import UpgradePlan from "../Screen/Plans/UpgradePlan";
+import MemberDetails from "../Screen/Member/MemberDetails";
+import SelectPlanscreen from "../Screen/Plans/SelectPlanScreen";
+import MemberTabBar from "./MemberTabBar";
+import MyCarePortfolio from "../Screen/Portfolio/MyCarePortfolio";
+import MyMemberProfile from "../Screen/Profile/MyMemberProfile";
+import MyReimbursements from "../Screen/MyReimbursements/MyReimbursements";
+import PreventiveExam from "../Screen/PreventiveExam/PreventiveExam";
+import PreventiveExamList from "../Screen/PreventiveExam/PreventiveExamList";
+import MyPlanDetails from "../Screen/Plans/MyPlanDetails";
+import MakeClaim from "../Screen/Claim/MakeClaim";
+import CreateAccount from "../Screen/Auth/CreateAccount";
+import ServiceInfo from "../Screen/Auth/ServiceInfo";
+import ProviderTabBar from "./ProviderTabBar";
+import ProviderPortfolio from "../Screen/Portfolio/ProviderPortfolio";
+import ProviderReimbursements from "../Screen/MyReimbursements/ProviderReimbursements";
+import Bonus from "../Screen/Bonus/Bonus";
+import ProviderProfile from "../Screen/Profile/ProviderProfile";
+import SubmitClaim from "../Screen/Claim/SubmitClaim";
 
 const BottomTab: any = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
+
 
 function BottomTabNavigator() {
   return (
     <BottomTab.Navigator tabBar={TabBar} screenOptions={{ headerShown: false }}>
       <BottomTab.Screen name="MyCare" component={MyPortfolio} />
-      <BottomTab.Screen name="Providers" component={MyPortfolio} />
+      <BottomTab.Screen name="Providers" component={Providers} />
       <BottomTab.Screen name="MyEarning" component={MyEarning} />
       <BottomTab.Screen name="Profile" component={MyProfile} />
+    </BottomTab.Navigator>
+  );
+}
+
+function ProviderBottomTabNavigator() {
+  return (
+    <BottomTab.Navigator tabBar={ProviderTabBar} screenOptions={{ headerShown: false }}>
+      <BottomTab.Screen name="Member" component={ProviderPortfolio} />
+      <BottomTab.Screen name="MyReimbursements" component={ProviderReimbursements} />
+      <BottomTab.Screen name="Profile" component={ProviderProfile} />
+      <BottomTab.Screen name="BonusIncentive" component={Bonus} />
+    </BottomTab.Navigator>
+  );
+}
+
+function MemberBottomTabNavigator() {
+  return (
+    <BottomTab.Navigator tabBar={MemberTabBar} screenOptions={{ headerShown: false }}>
+      <BottomTab.Screen name="MyCare" component={MyCarePortfolio} />
+      <BottomTab.Screen name="PreventiveExam" component={PreventiveExam} />
+      <BottomTab.Screen name="Provider" component={Providers} />
+      <BottomTab.Screen name="Profile" component={MyMemberProfile} />
+      <BottomTab.Screen name="MyReimbursements" component={MyReimbursements} />
     </BottomTab.Navigator>
   );
 }
@@ -59,11 +107,115 @@ function MainNavigator() {
       },
     },
     {
+      name: "MemberHome",
+      component: MemberBottomTabNavigator,
+      options: {
+        headerTitle: "MemberHome",
+        headerShown: false,
+      },
+    },
+    {
+      name: "ProviderHome",
+      component: ProviderBottomTabNavigator,
+      options: {
+        headerTitle: "ProviderHome",
+        headerShown: false,
+      },
+    },
+    {
       name: "ChangePassword",
       component: ChangePassword,
       options: {
         headerTitle: "ChangePassword",
         headerShown: false,
+      },
+    },
+    {
+      name: "ProviderDetails",
+      component: ProviderDetails,
+      options: {
+        headerTitle: "ProviderDetails",
+        headerShown: true,
+      },
+    },
+    {
+      name: "AddMemberScreen",
+      component: AddMemberScreen,
+      options: {
+        headerTitle: "AddMemberScreen",
+        headerShown: true,
+      },
+    },
+    {
+      name: "SelectMember",
+      component: SelectMember,
+      options: {
+        headerTitle: "SelectMember",
+        headerShown: true,
+      },
+    },
+    {
+      name: "MakePayment",
+      component: MakePayment,
+      options: {
+        headerTitle: "MakePayment",
+        headerShown: true,
+      },
+    },
+    {
+      name: "CompletePayment",
+      component: CompletePayment,
+      options: {
+        headerTitle: "CompletePayment",
+        headerShown: true,
+      },
+    },
+    {
+      name: "UpgradePlan",
+      component: UpgradePlan,
+      options: {
+        headerTitle: "UpgradePlan",
+        headerShown: true,
+      },
+    },
+    {
+      name: "MemberDetails",
+      component: MemberDetails,
+      options: {
+        headerTitle: "MemberDetails",
+        headerShown: true,
+      },
+    },
+    {
+      name: "SelectPlanscreen",
+      component: SelectPlanscreen,
+      options: {
+        headerTitle: "SelectPlanscreen",
+        headerShown: true,
+      },
+    },
+    {
+      name: "PreventiveExamList",
+      component: PreventiveExamList,
+      options: {
+        headerTitle: "PreventiveExamList",
+        headerShown: true,
+      },
+    },
+    {
+      name: "MyPlanDetails",
+      component: MyPlanDetails,
+      options: {
+        headerTitle: "MyPlanDetails",
+        headerShown: true,
+      },
+    },
+    {
+      name: "MakeClaim",
+      component: MakeClaim,
+      options: {
+        headerTitle: "MakeClaim",
+        headerShown: true,
       },
     },
     {
@@ -106,12 +258,36 @@ function MainNavigator() {
         headerShown: false,
       },
     },
+      {
+      name: "CreateAccount",
+      component: CreateAccount,
+      options: {
+        headerTitle: "CreateAccount",
+        headerShown: false,
+      },
+    },
     {
       name: "CompleteProfile",
       component: CompleteProfile,
       options: {
         headerTitle: "CompleteProfile",
         headerShown: false,
+      },
+    },
+    {
+      name: "ServiceInfo",
+      component: ServiceInfo,
+      options: {
+        headerTitle: "ServiceInfo",
+        headerShown: false,
+      },
+    },
+    {
+      name: "SubmitClaim",
+      component: SubmitClaim,
+      options: {
+        headerTitle: "SubmitClaim",
+        headerShown: true,
       },
     },
   ];
@@ -130,3 +306,47 @@ function MainNavigator() {
   );
 }
 export default MainNavigator;
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+    backgroundColor: Colors.bg,
+    flexGrow: 1,
+  },
+  headerView: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  innerHeader: {
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  serachView: { flexDirection: "row", justifyContent: "space-between" },
+  welcome: {
+    fontSize: 23,
+    fontWeight: "bold",
+    color: "#000",
+  },
+
+  contactInfo: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
+    padding: 16,
+    marginVertical: 10,
+  },
+  logoutIcon: {
+    height: 24,
+    width: 24,
+  },
+  forgotView: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+  forgtPass: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: Colors.primaryColor,
+  },
+});

@@ -103,8 +103,9 @@ const TabBarComponent = ({ state, navigation, descriptors }: any) => {
             target: route.key,
           });
         };
-        const routeName = route.name.toLowerCase() as keyof typeof routes;
-        const icon = routes[routeName]?.icon;
+        const routeName = route.name.toLowerCase() as keyof typeof memberRoutes;
+        const icon = memberRoutes[routeName]?.icon;
+
         return (
           <Pressable
             key={`route-${index}`}
@@ -133,11 +134,11 @@ const TabBarComponent = ({ state, navigation, descriptors }: any) => {
           </Pressable>
         );
       })}
-      <FloatingButton
+      {/* <FloatingButton
         onPress={() => {
           navigation.navigate("AddMemberScreen");
         }}
-      />
+      /> */}
     </>
   );
 };

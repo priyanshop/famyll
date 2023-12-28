@@ -13,26 +13,38 @@ import { Images } from "../../assets/index";
 import { Colors } from "../../Helper/Colors";
 import CustomButton from "../../Components/CustomButton";
 import CustomTextInput from "../../Components/CustomTextInput";
+import CustomDropdown from "../../Components/CustomDropdown";
 
-const SignUp = ({ navigation, route }: any) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [isBusinessAccount, setIsBusinessAccount] = useState(false);
+const data = [
+  { label: "Item 1", value: "1" },
+  { label: "Item 2", value: "2" },
+  { label: "Item 3", value: "3" },
+  { label: "Item 4", value: "4" },
+  { label: "Item 5", value: "5" },
+  { label: "Item 6", value: "6" },
+  { label: "Item 7", value: "7" },
+  { label: "Item 8", value: "8" },
+];
+
+const CreateAccount = ({ navigation, route }: any) => {
   const [businessName, setBusinessName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  const [legalAuthority, setLegalAuthority] = useState(false);
-  const [signature, setSignature] = useState("");
+
   const navigateToHome = () => {
     navigation.navigate("Home");
-
   };
 
   const navigateToSignInScreen = () => {
-    navigation.navigate("SignInScreen");
+    navigation.navigate("SignInScreen", {
+      isMember: false,
+      isPlan: false,
+      isProvider: true,
+    });
   };
+
   return (
     <ScrollView style={styles.container}>
       <Image source={Images.AppLogo} resizeMode="contain" style={styles.logo} />
@@ -41,37 +53,17 @@ const SignUp = ({ navigation, route }: any) => {
         {"Enter necessary details to create your account."}
       </Text>
       <View>
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <CustomTextInput
-            label={"First Name"}
-            placeholderText={"Enter First Name"}
-            value={firstName}
-            onChangeText={firstName}
-          />
-          <CustomTextInput
-            label={"Last Name"}
-            placeholderText={"Enter Last Name"}
-            value={lastName}
-            onChangeText={setLastName}
-          />
-        </View>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Checkbox.Android
-            status={isBusinessAccount ? "checked" : "unchecked"}
-            onPress={() => {
-              setBusinessName(!isBusinessAccount);
-            }}
-            color={Colors.primaryColor}
-          />
-          <Text style={styles.checkBoxText}>
-            {"This is a Business Account."}
-          </Text>
-        </View>
         <CustomTextInput
-          label={"Name of Business"}
-          placeholderText={"Enter Business Name"}
+          label={"Business Name"}
+          placeholderText={"Enter Your Business Name"}
           value={businessName}
           onChangeText={setBusinessName}
+        />
+        <CustomDropdown
+          data={data}
+          onSelect={(selectedItem) => {}}
+          placeholder={"Select Provider Type"}
+          label={"Type of Provider"}
         />
         <CustomTextInput
           label={"Email Address"}
@@ -100,29 +92,15 @@ const SignUp = ({ navigation, route }: any) => {
             onChangeText={setCountry}
           />
         </View>
-        <View style={{ flexDirection: "row" }}>
-          <Checkbox.Android
-            status={legalAuthority ? "checked" : "unchecked"}
-            onPress={() => {
-              setLegalAuthority(!legalAuthority);
-            }}
-            color={Colors.primaryColor}
-          />
-          <View style={{ paddingRight: 25, marginTop: 5 }}>
-            <Text style={styles.checkBoxText2}>
-              {
-                "I certify that I have the legal authority to create this account and engage on this site as Plan Administrator on behalf of the above stated business. I understand that creating this account, my first name and last name represent my electronic signature."
-              }
-            </Text>
-          </View>
-        </View>
         <CustomButton onPress={navigateToHome} marginTop={25}>
           Create Account
         </CustomButton>
         <View>
           <Text style={styles.newAccPass}>
             {"Already have an account? "}
-            <Text onPress={navigateToSignInScreen} style={styles.forgtPass}>{"Sign In"}</Text>
+            <Text onPress={navigateToSignInScreen} style={styles.forgtPass}>
+              {"Sign In"}
+            </Text>
           </Text>
         </View>
       </View>
@@ -176,4 +154,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUp;
+export default CreateAccount;

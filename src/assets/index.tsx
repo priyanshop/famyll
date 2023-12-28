@@ -8,4 +8,11 @@ export const Images = {
   searchnormal: require("./Image/searchnormal.png"),
   calendar: require("./Image/calendar.png"),
   Logout: require("./Image/Logout.png"),
+  planbg: require("./Image/planbg.png"),
+  VisaCard: require("./Image/VisaCard.png"),
+  MembershipCard: require("./Image/MembershipCard.png"),
+  PreventiveExams_Member: require("./Image/PreventiveExams_Member.png"),
+  MyReimbursements_Member: require("./Image/MyReimbursements_Member.png"),
+  Bonus: require("./Image/Bonus.png"),
+  Member: require("./Image/Member.png"),
 };

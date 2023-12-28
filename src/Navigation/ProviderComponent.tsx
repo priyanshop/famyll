@@ -16,24 +16,20 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import { Colors } from "../Helper/Colors";
 import { Images } from "../assets/index";
 import FloatingButton from "../Components/FloatingButton";
+// export const routes = {
+//   mycare: { name: "MyCare", icon: Images.MyCare },
+//   providers: { name: "Providers", icon: Images.Providers },
+//   myearning: { name: "MyEarning", icon: Images.MyEarning },
+//   profile: { name: "Profile", icon: Images.Profile },
+// };
 export const routes = {
-  mycare: { name: "MyCare", icon: Images.MyCare },
-  providers: { name: "Providers", icon: Images.Providers },
-  myearning: { name: "MyEarning", icon: Images.MyEarning },
-  profile: { name: "Profile", icon: Images.Profile },
-};
-export const memberRoutes = {
-  mycare: { name: "MyCare", icon: Images.MyCare },
-  preventiveexam: {
-    name: "PreventiveExam",
-    icon: Images.PreventiveExams_Member,
-  },
-  provider: { name: "Provider", icon: Images.Providers },
-  profile: { name: "Profile", icon: Images.Profile },
+  member: { name: "Member", icon: Images.Member },
   myreimbursements: {
     name: "MyReimbursements",
     icon: Images.MyReimbursements_Member,
   },
+  profile: { name: "Profile", icon: Images.Profile },
+  bonusincentive: { name: "BonusIncentive", icon: Images.Bonus },
 };
 type Props = {
   state: TabNavigationState<ParamListBase>;
@@ -133,11 +129,11 @@ const TabBarComponent = ({ state, navigation, descriptors }: any) => {
           </Pressable>
         );
       })}
-      <FloatingButton
+      {/* <FloatingButton
         onPress={() => {
           navigation.navigate("AddMemberScreen");
         }}
-      />
+      /> */}
     </>
   );
 };

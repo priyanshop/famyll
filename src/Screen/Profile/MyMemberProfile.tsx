@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -7,21 +7,61 @@ import {
   StyleSheet,
   SafeAreaView,
   TouchableOpacity,
+  FlatList,
+  ImageBackground,
 } from "react-native";
+import Feather from "react-native-vector-icons/Feather";
 import { Images } from "../../assets/index";
 import CustomImageButton from "../../Components/CustomImageButton";
 import { Colors } from "../../Helper/Colors";
 
-const CustomInfo = ({ label, value }: any) => {
+let contactInformation = [
+  {
+    type: "Basic Information",
+    details: [
+      { type: "Date of Birth", value: "12/06/1986" },
+      { type: "Gender", value: "Male" },
+    ],
+  },
+  {
+    type: "Contact Information",
+    details: [
+      { type: "Phone Number", value: "(+012) 345-6789" },
+      { type: "Email Address", value: "example@email.com" },
+      { type: "City", value: "Chicago" },
+      { type: "State/Province", value: "Illinois" },
+      { type: "Country", value: "United States" },
+    ],
+  },
+  {
+    type: "Pre-existing Condition",
+    details: [{ type: "Smoker", value: "Yes" }],
+  },
+];
+
+const CustomInfo1 = ({ label, value }: any) => {
   return (
-    <View style={{ marginVertical: 15, flex: 0.5 }}>
-      <Text style={styles.heading}>{label}</Text>
-      <Text style={styles.value}>{value}</Text>
+    <View style={{ marginVertical: 7.5, flex: 0.5 }}>
+      <Text style={styles.heading2}>{label}</Text>
+      <Text style={styles.value2}>{value}</Text>
     </View>
   );
 };
+const MyMemberProfile = ({ navigation, route }: any) => {
+  const [expandedSections, setExpandedSections] = useState({
+    "0": true,
+    "1": true,
+    "2": true,
+    "3": true,
+    "4": true,
+  });
 
-const MyProfile = ({ navigation, route }: any) => {
+  const toggleSection = (index) => {
+    setExpandedSections((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
 
   const navigateToChangePassword = () => {
     navigation.navigate("ChangePassword");
@@ -29,7 +69,14 @@ const MyProfile = ({ navigation, route }: any) => {
 
   const EmployeeCard = ({ name, id, status }: any) => (
     <View style={styles.profileCard}>
-      <View style={styles.coverImage} />
+      <ImageBackground
+        source={{
+          uri: "https://iili.io/JReD8pS.jpg",
+        }}
+        resizeMode={"cover"}
+        style={styles.coverImage}
+        imageStyle={styles.coverImage}
+      />
       <View style={styles.profileNameView}>
         <View style={{ flex: 0.4 }}>
           <Image
@@ -52,7 +99,11 @@ const MyProfile = ({ navigation, route }: any) => {
       </View>
     </View>
   );
-  
+
+  const renderItem = ({ item }) => (
+    <CustomInfo1 label={item.type} value={item.value} />
+  );
+
   return (
     <SafeAreaView style={{ backgroundColor: Colors.bg, flex: 1 }}>
       <ScrollView style={styles.container}>
@@ -68,22 +119,44 @@ const MyProfile = ({ navigation, route }: any) => {
         <View style={{ marginTop: 10 }}>
           <EmployeeCard />
           <View style={styles.contactInfo}>
-            <View>
-              <Text style={styles.welcome}>{"Contact Information"}</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-              }}
-            >
-              <CustomInfo label="Email address" value="martin@yopmail.com" />
-              <CustomInfo label="City" value="Chicago" />
-            </View>
-            <View>
-              <CustomInfo label="Country" value="United States" />
-            </View>
-
-            <View>
+            {contactInformation.map((item, index) => (
+              <View>
+                <TouchableOpacity
+                  style={styles.acordionTitleView}
+                  onPress={() => toggleSection(index)}
+                >
+                  <Text style={styles.welcome2}>{item.type}</Text>
+                  <Feather
+                    name={
+                      expandedSections[index] ? "chevron-up" : "chevron-down"
+                    }
+                    size={20}
+                    color={"#332640"}
+                  />
+                </TouchableOpacity>
+                {expandedSections[index] && (
+                  <View>
+                    {index == 2 ? (
+                      <Text style={styles.value2}>
+                        {"High Blood Pressure, Diabetes"}
+                      </Text>
+                    ) : null}
+                    <FlatList
+                      data={item.details}
+                      renderItem={renderItem}
+                      keyExtractor={(item) => item.type}
+                      numColumns={2}
+                      contentContainerStyle={styles.container2}
+                      style={{
+                        backgroundColor: "#FFF",
+                      }}
+                    />
+                    {index !== 2 && <View style={styles.line} />}
+                  </View>
+                )}
+              </View>
+            ))}
+            <View style={{ marginTop: 15 }}>
               <Text style={styles.welcome}>{"Add Wallet"}</Text>
             </View>
             <View style={styles.dashedView}>
@@ -92,7 +165,6 @@ const MyProfile = ({ navigation, route }: any) => {
               </TouchableOpacity>
             </View>
           </View>
-
           <TouchableOpacity style={styles.logoutBtn}>
             <Image
               source={Images.Logout}
@@ -107,7 +179,7 @@ const MyProfile = ({ navigation, route }: any) => {
   );
 };
 
-export default MyProfile;
+export default MyMemberProfile;
 
 const styles = StyleSheet.create({
   container: {
@@ -185,14 +257,6 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: "#1A9C2F",
   },
-  viewBtn: {
-    flex: 0.3,
-    justifyContent: "center",
-    alignItems: "flex-end",
-  },
-  imageView: {
-    flex: 0.2,
-  },
   profileCard: {
     borderRadius: 16,
     height: 224,
@@ -226,7 +290,7 @@ const styles = StyleSheet.create({
   contactInfo: {
     backgroundColor: "#FFFFFF",
     borderRadius: 16,
-    padding: 16,
+    padding: 15,
     marginVertical: 10,
   },
   heading: {
@@ -276,5 +340,37 @@ const styles = StyleSheet.create({
   logoutIcon: {
     height: 24,
     width: 24,
+  },
+  acordionTitleView: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 10,
+    marginTop: 10,
+  },
+  welcome2: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#000",
+  },
+  heading2: {
+    fontSize: 14,
+    fontWeight: "500",
+    color: "#8B7F97",
+  },
+  value2: {
+    fontSize: 16,
+    fontWeight: "500",
+    color: "#332640",
+    marginTop: 5,
+  },
+  line: {
+    height: 1,
+    backgroundColor: "#E3E1E5",
+    width: "100%",
+    marginTop: 10,
+  },
+  container2: {
+    justifyContent: "space-between",
   },
 });
