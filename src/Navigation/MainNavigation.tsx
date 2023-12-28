@@ -35,6 +35,13 @@ import PreventiveExam from "../Screen/PreventiveExam/PreventiveExam";
 import PreventiveExamList from "../Screen/PreventiveExam/PreventiveExamList";
 import MyPlanDetails from "../Screen/Plans/MyPlanDetails";
 import MakeClaim from "../Screen/Claim/MakeClaim";
+import CreateAccount from "../Screen/Auth/CreateAccount";
+import ServiceInfo from "../Screen/Auth/ServiceInfo";
+import ProviderTabBar from "./ProviderTabBar";
+import ProviderPortfolio from "../Screen/Portfolio/ProviderPortfolio";
+import ProviderReimbursements from "../Screen/MyReimbursements/ProviderReimbursements";
+import Bonus from "../Screen/Bonus/Bonus";
+import ProviderProfile from "../Screen/Profile/ProviderProfile";
 
 const BottomTab: any = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -48,6 +55,17 @@ function BottomTabNavigator() {
       <BottomTab.Screen name="Providers" component={Providers} />
       <BottomTab.Screen name="MyEarning" component={MyEarning} />
       <BottomTab.Screen name="Profile" component={MyProfile} />
+    </BottomTab.Navigator>
+  );
+}
+
+function ProviderBottomTabNavigator() {
+  return (
+    <BottomTab.Navigator tabBar={ProviderTabBar} screenOptions={{ headerShown: false }}>
+      <BottomTab.Screen name="Member" component={ProviderPortfolio} />
+      <BottomTab.Screen name="MyReimbursements" component={ProviderReimbursements} />
+      <BottomTab.Screen name="Profile" component={ProviderProfile} />
+      <BottomTab.Screen name="BonusIncentive" component={Bonus} />
     </BottomTab.Navigator>
   );
 }
@@ -92,6 +110,14 @@ function MainNavigator() {
       component: MemberBottomTabNavigator,
       options: {
         headerTitle: "MemberHome",
+        headerShown: false,
+      },
+    },
+    {
+      name: "ProviderHome",
+      component: ProviderBottomTabNavigator,
+      options: {
+        headerTitle: "ProviderHome",
         headerShown: false,
       },
     },
@@ -231,11 +257,27 @@ function MainNavigator() {
         headerShown: false,
       },
     },
+      {
+      name: "CreateAccount",
+      component: CreateAccount,
+      options: {
+        headerTitle: "CreateAccount",
+        headerShown: false,
+      },
+    },
     {
       name: "CompleteProfile",
       component: CompleteProfile,
       options: {
         headerTitle: "CompleteProfile",
+        headerShown: false,
+      },
+    },
+    {
+      name: "ServiceInfo",
+      component: ServiceInfo,
+      options: {
+        headerTitle: "ServiceInfo",
         headerShown: false,
       },
     },

@@ -9,10 +9,7 @@ import {
   Image,
   Platform,
 } from "react-native";
-import { RadioButton } from "react-native-paper";
 import { Overlay } from "react-native-elements";
-import AntDesign from "react-native-vector-icons/AntDesign";
-import { Images } from "../../assets";
 
 import CustomHeader from "../../Components/CustomHeader";
 import CustomTextInput from "../../Components/CustomTextInput";

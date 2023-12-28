@@ -1,51 +1,34 @@
 import React from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  SafeAreaView,
-} from "react-native";
+import { View, Text, ScrollView, StyleSheet, SafeAreaView } from "react-native";
 import Octicons from "react-native-vector-icons/Octicons";
 import { Images } from "../../assets/index";
 import CustomImageButton from "../../Components/CustomImageButton";
 import { Colors } from "../../Helper/Colors";
 
-const data = [
+const transactions = [
   {
-    Date: "12/06/2016",
-    "Time of Payment": "10:00 AM",
-    "Amount to Claim": "$500",
-    "Claim Type": "Claim Type",
-    "Payment Approval": "Completed",
+    memberNumber: "#FML1000M",
+    date: "12/06/2016",
+    timeOfPayment: "10:00 AM",
+    claimedAmount: "$500",
+    paymentStatus: "Paid",
+    paymentApproval: "Completed",
   },
   {
-    Date: "12/06/2016",
-    "Time of Payment": "10:00 AM",
-    "Amount to Claim": "$500",
-    "Claim Type": "",
-    "Payment Approval": "Completed",
+    memberNumber: "#FML1000M",
+    date: "12/06/2016",
+    timeOfPayment: "10:00 AM",
+    claimedAmount: "$500",
+    paymentStatus: "Not Paid",
+    paymentApproval: "In Progress",
   },
   {
-    Date: "12/06/2016",
-    "Time of Payment": "10:00 AM",
-    "Amount to Claim": "$500",
-    "Claim Type": "Claim Type",
-    "Payment Approval": "In Progress",
-  },
-  {
-    Date: "12/06/2016",
-    "Time of Payment": "10:00 AM",
-    "Amount to Claim": "$500",
-    "Claim Type": "Claim Type",
-    "Payment Approval": "Completed",
-  },
-  {
-    Date: "12/06/2016",
-    "Time of Payment": "10:00 AM",
-    "Amount to Claim": "$500",
-    "Claim Type": "Claim Type",
-    "Payment Approval": "Completed",
+    memberNumber: "#FML1000M",
+    date: "12/06/2016",
+    timeOfPayment: "10:00 AM",
+    claimedAmount: "$500",
+    paymentStatus: "Paid",
+    paymentApproval: "Completed",
   },
 ];
 
@@ -68,7 +51,7 @@ const CustomInfo = ({ label, value, clip = false, color, status }: any) => {
   );
 };
 
-const MyReimbursements = ({ navigation, route }: any) => {
+const ProviderReimbursements = ({ navigation, route }: any) => {
   return (
     <SafeAreaView style={{ backgroundColor: Colors.bg, flex: 1 }}>
       <ScrollView style={styles.container}>
@@ -81,30 +64,34 @@ const MyReimbursements = ({ navigation, route }: any) => {
             <CustomImageButton imageSource={Images.notification} />
           </View>
         </View>
-        <View style={{ marginTop: 10, marginBottom:100 }}>
+        <View style={{ marginTop: 10, marginBottom: 100 }}>
           <View>
-            {data.map((item) => (
+            {transactions.map((item) => (
               <View style={styles.contactInfo}>
                 <View style={styles.row}>
-                  <CustomInfo label="Date" value={item.Date} />
+                  <CustomInfo label="Member Number" value={item.memberNumber} />
+                  <CustomInfo label="Date" value={item.date} />
+                </View>
+                <View style={styles.row}>
                   <CustomInfo
                     label="Time of Payment"
-                    value={item["Time of Payment"]}
+                    value={item.timeOfPayment}
+                  />
+                  <CustomInfo
+                    label="Claimed Amount"
+                    value={item.claimedAmount}
                   />
                 </View>
                 <View style={styles.row}>
                   <CustomInfo
-                    label="Amount to Claim"
-                    value={item["Amount to Claim"]}
+                    label="Payment Status"
+                    value={item.paymentStatus}
                   />
-                  <CustomInfo label="Claim Type" value={item["Claim Type"]} />
-                </View>
-                <View>
                   <CustomInfo
                     clip={true}
-                    status={item["Payment Approval"]}
+                    status={item.paymentApproval}
                     label="Payment Approval"
-                    color={Colors[item["Payment Approval"]]}
+                    color={Colors[item.paymentApproval]}
                   />
                 </View>
               </View>
@@ -116,7 +103,7 @@ const MyReimbursements = ({ navigation, route }: any) => {
   );
 };
 
-export default MyReimbursements;
+export default ProviderReimbursements;
 
 const styles = StyleSheet.create({
   container: {

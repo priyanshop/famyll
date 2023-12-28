@@ -1,6 +1,6 @@
-//@ts-nocheck
 import React, { useState } from "react";
-import { View, Text, Image, ScrollView, StyleSheet } from "react-native";
+import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { Overlay } from "react-native-elements";
 import { Images } from "../../assets/index";
 import { Colors } from "../../Helper/Colors";
 import CustomButton from "../../Components/CustomButton";
@@ -10,7 +10,12 @@ const CompleteProfile = ({ navigation, route }: any) => {
   const [newPassword, setNewPassword] = useState("");
   const [confrimPassword, setConfrimPassword] = useState("");
   const [memberNo, setMemberNo] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
+
   const navigateToVerfyOTP = () => {};
+  const onBackdropPress = () => {
+    setIsVisible(!isVisible);
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -40,7 +45,7 @@ const CompleteProfile = ({ navigation, route }: any) => {
           onChangeText={setConfrimPassword}
           secureTextEntry={true}
         />
-        <CustomButton onPress={navigateToVerfyOTP} marginTop={25}>
+        <CustomButton onPress={onBackdropPress} marginTop={25}>
           Sign Up
         </CustomButton>
         <View>
@@ -50,6 +55,24 @@ const CompleteProfile = ({ navigation, route }: any) => {
           </Text>
         </View>
       </View>
+      <Overlay
+        animationType={"slide"}
+        isVisible={isVisible}
+        onBackdropPress={onBackdropPress}
+        overlayStyle={styles.bottomSheetContainer}
+      >
+        <View style={styles.SureView}>
+          <Text style={styles.welcome}>{"Account Approval"}</Text>
+        </View>
+        <View style={styles.desctiptionView}>
+          <Text style={styles.countineTxt}>
+            {"We will get back to you with an email to confirm your account"}
+          </Text>
+        </View>
+        <View style={{ padding: 10 }}>
+          <CustomButton onPress={onBackdropPress} marginTop={10}>{"Okay"}</CustomButton>
+        </View>
+      </Overlay>
     </ScrollView>
   );
 };
@@ -86,6 +109,50 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "bold",
     color: Colors.primaryColor,
+  },
+  bottomSheetContainer: {
+    backgroundColor: "#F8FAFE",
+    width: "90%",
+    padding: 15,
+    borderRadius:16,
+  },
+  countineTxt: {
+    fontSize: 17,
+    fontWeight: "400",
+    color: "#574766",
+    paddingHorizontal: 20,
+  },
+  cancelBtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: 30,
+    width: "100%",
+    padding: 16,
+    marginVertical: 5,
+    backgroundColor: "#EBF3F7",
+    justifyContent: "center",
+  },
+  cancelTxt: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#0B1B22",
+  },
+  desctiptionView: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 15,
+  },
+  SureView: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 15,
+  },
+  welcome: {
+    fontSize: 23,
+    fontWeight: "bold",
+    color: "#000",
   },
 });
 

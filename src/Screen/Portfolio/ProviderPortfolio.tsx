@@ -9,6 +9,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import { Images } from "../../assets/index";
+import CustomButton from "../../Components/CustomButton";
 import CustomClip from "../../Components/CustomClip";
 import CustomImageButton from "../../Components/CustomImageButton";
 import { Colors } from "../../Helper/Colors";
@@ -44,7 +45,7 @@ const EmployeeCard = ({ name, id, status }: any) => (
   </View>
 );
 
-const MyPortfolio = () => {
+const ProviderPortfolio = () => {
   return (
     <SafeAreaView style={{ backgroundColor: Colors.bg, flex: 1 }}>
       <ScrollView style={styles.container}>
@@ -68,6 +69,7 @@ const MyPortfolio = () => {
           />
           <Text style={styles.date}> 16th August, 2023. Monday.</Text>
         </View>
+        <CustomButton marginTop={5}>{"Submit Claim"}</CustomButton>
         {EmployeeList.map((employee) => (
           <EmployeeCard {...employee} key={employee.id} />
         ))}
@@ -76,7 +78,7 @@ const MyPortfolio = () => {
   );
 };
 
-export default MyPortfolio;
+export default ProviderPortfolio;
 
 const styles = StyleSheet.create({
   container: {

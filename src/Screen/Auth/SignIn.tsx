@@ -37,7 +37,11 @@ const SignInScreen = ({ navigation, route }: any) => {
   };
 
   const navigateToSignUp = () => {
-    navigation.navigate("SignUp");
+    if (route.params.isProvider) {
+      navigation.navigate("CreateAccount");
+    } else {
+      navigation.navigate("SignUp");
+    }
   };
 
   const navigateToHome = () => {
@@ -46,6 +50,9 @@ const SignInScreen = ({ navigation, route }: any) => {
     }
     if (route.params.isPlan) {
       navigation.navigate("Home");
+    }
+    if (route.params.isProvider) {
+      navigation.navigate("ProviderHome");
     }
   };
 

@@ -13,4 +13,6 @@ export const Images = {
   MembershipCard: require("./Image/MembershipCard.png"),
   PreventiveExams_Member: require("./Image/PreventiveExams_Member.png"),
   MyReimbursements_Member: require("./Image/MyReimbursements_Member.png"),
+  Bonus: require("./Image/Bonus.png"),
+  Member: require("./Image/Member.png"),
 };
