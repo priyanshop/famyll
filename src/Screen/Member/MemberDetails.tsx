@@ -188,7 +188,7 @@ const MemberDetails = ({ navigation, route }: any) => {
           <Text style={styles.selectText}>Membership Card</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={navigateToAddMemberScreen} style={styles.button}>
-          <Text style={styles.buttonText}>Edit Member</Text>
+          <Text style={styles.buttonText}>{route.params.isProvider? "Submit Claim":"Edit Member"}</Text>
         </TouchableOpacity>
       </View>
     </View>

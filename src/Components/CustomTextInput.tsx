@@ -36,7 +36,7 @@ const CustomTextInput = ({
         marginHorizontal: 5,
       }}
     >
-      <Text
+      {label &&<Text
         style={{
           marginBottom: 5,
           fontSize: 16,
@@ -45,7 +45,7 @@ const CustomTextInput = ({
         }}
       >
         {label}
-      </Text>
+      </Text>}
       <View
         style={{
           flexDirection: "row",

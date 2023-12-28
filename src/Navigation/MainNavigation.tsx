@@ -42,6 +42,7 @@ import ProviderPortfolio from "../Screen/Portfolio/ProviderPortfolio";
 import ProviderReimbursements from "../Screen/MyReimbursements/ProviderReimbursements";
 import Bonus from "../Screen/Bonus/Bonus";
 import ProviderProfile from "../Screen/Profile/ProviderProfile";
+import SubmitClaim from "../Screen/Claim/SubmitClaim";
 
 const BottomTab: any = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -279,6 +280,14 @@ function MainNavigator() {
       options: {
         headerTitle: "ServiceInfo",
         headerShown: false,
+      },
+    },
+    {
+      name: "SubmitClaim",
+      component: SubmitClaim,
+      options: {
+        headerTitle: "SubmitClaim",
+        headerShown: true,
       },
     },
   ];

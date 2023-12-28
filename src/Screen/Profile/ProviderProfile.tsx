@@ -18,6 +18,13 @@ import { Colors } from "../../Helper/Colors";
 
 let contactInformation = [
   {
+    type: "Education",
+    details: [
+      { type: "Graduation Year", value: "2012" },
+      { type: "Graduated From", value: "Medical School Name" },
+    ],
+  },
+  {
     type: "Contact Information",
     details: [
       { type: "Phone Number", value: "(+012) 345-6789" },
@@ -86,6 +93,7 @@ const ProviderProfile = ({ navigation, route }: any) => {
     "2": true,
     "3": true,
     "4": true,
+    "5": true,
   });
 
   const toggleSection = (index) => {
@@ -110,8 +118,8 @@ const ProviderProfile = ({ navigation, route }: any) => {
         imageStyle={styles.coverImage}
       />
       <View style={styles.profileNameView}>
-        <View>
-          <View style={{ flex: 0.4 }}>
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ flex: 0.35 }}>
             <Image
               source={{
                 uri: "https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
@@ -122,10 +130,13 @@ const ProviderProfile = ({ navigation, route }: any) => {
           </View>
           <View style={styles.ProfileCardView}>
             <Text style={styles.nameText}>{"Martin Smith"}</Text>
-            <Text style={styles.nameText}>{"Type: General Practioner"}</Text>
+            <Text style={styles.heading3}>
+              {"Type: "}
+              <Text style={styles.heading}>{"General Practioner"}</Text>
+            </Text>
           </View>
         </View>
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: "row",marginTop:2 }}>
           <TouchableOpacity
             onPress={navigateToChangePassword}
             style={styles.button}
@@ -277,6 +288,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "600",
     marginBottom: 8,
+    marginTop:10
   },
   idText: {
     color: "#826C99",
@@ -301,7 +313,7 @@ const styles = StyleSheet.create({
   },
   profileNameView: {
     backgroundColor: "#FFFFFF",
-    flex: 0.5,
+    flex: 0.55,
     borderBottomStartRadius: 16,
     borderBottomRightRadius: 16,
     // flexDirection: "row",
@@ -326,9 +338,9 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   heading: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: "500",
-    color: "#8B7F97",
+    color: "#332640",
   },
   value: {
     fontSize: 16,
@@ -423,5 +435,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     paddingHorizontal: 12,
     borderColor: Colors.primaryColor,
+  },
+  heading3: {
+    fontSize: 15,
+    fontWeight: "500",
+    color: "#8B7F97",
   },
 });

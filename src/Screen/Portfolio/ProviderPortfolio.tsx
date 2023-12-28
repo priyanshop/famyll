@@ -22,30 +22,39 @@ const EmployeeList = [
   { name: "Kevin Rohds", id: "#FML1004M", status: "Covered" },
 ];
 
-const EmployeeCard = ({ name, id, status }: any) => (
-  <View style={styles.card}>
-    <View style={styles.imageView}>
-      <Image
-        source={{
-          uri: "https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
-        }}
-        style={styles.image}
-      />
-    </View>
-    <View style={styles.details}>
-      <Text style={styles.nameText}>{name}</Text>
-      <Text style={styles.idText}>{id}</Text>
-      <CustomClip color={Colors[status]} status={status} />
-    </View>
-    <View style={styles.viewBtn}>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>View Details</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-);
 
-const ProviderPortfolio = () => {
+
+const ProviderPortfolio = ({ navigation, route }: any) => {
+  const navigateTo = () => {
+    navigation.navigate("MemberDetails", {
+      isProvider: true,
+    });
+  };
+  const navigateToSubmitClaim = () => {
+    navigation.navigate("SubmitClaim");
+  };
+  const EmployeeCard = ({ name, id, status }: any) => (
+    <View style={styles.card}>
+      <View style={styles.imageView}>
+        <Image
+          source={{
+            uri: "https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
+          }}
+          style={styles.image}
+        />
+      </View>
+      <View style={styles.details}>
+        <Text style={styles.nameText}>{name}</Text>
+        <Text style={styles.idText}>{id}</Text>
+        <CustomClip color={Colors[status]} status={status} />
+      </View>
+      <View style={styles.viewBtn}>
+        <TouchableOpacity onPress={navigateTo} style={styles.button}>
+          <Text style={styles.buttonText}>View Details</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
   return (
     <SafeAreaView style={{ backgroundColor: Colors.bg, flex: 1 }}>
       <ScrollView style={styles.container}>
@@ -69,7 +78,7 @@ const ProviderPortfolio = () => {
           />
           <Text style={styles.date}> 16th August, 2023. Monday.</Text>
         </View>
-        <CustomButton marginTop={5}>{"Submit Claim"}</CustomButton>
+        <CustomButton onPress={navigateToSubmitClaim} marginTop={5}>{"Submit Claim"}</CustomButton>
         {EmployeeList.map((employee) => (
           <EmployeeCard {...employee} key={employee.id} />
         ))}
