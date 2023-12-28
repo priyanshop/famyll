@@ -11,4 +11,6 @@ export const Images = {
   planbg: require("./Image/planbg.png"),
   VisaCard: require("./Image/VisaCard.png"),
   MembershipCard: require("./Image/MembershipCard.png"),
+  PreventiveExams_Member: require("./Image/PreventiveExams_Member.png"),
+  MyReimbursements_Member: require("./Image/MyReimbursements_Member.png"),
 };

@@ -14,5 +14,8 @@ export const Colors = {
   Waiting: "#FF8A48",
   Covered: "#1A9C2F",
   Suspended: "#C91334",
-  logOut:"#03577B"
+  logOut:"#03577B",
+  Completed:"#1A9C2F",
+  "In Progress":"#FF8A48",
+  Cancelled:"#C91334"
 };

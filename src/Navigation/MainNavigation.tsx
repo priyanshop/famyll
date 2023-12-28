@@ -27,13 +27,14 @@ import CompletePayment from "../Screen/Payments/CompletePayment";
 import UpgradePlan from "../Screen/Plans/UpgradePlan";
 import MemberDetails from "../Screen/Member/MemberDetails";
 import SelectPlanscreen from "../Screen/Plans/SelectPlanScreen";
-
-type RootStackParamList = {
-  Home: any;
-  Feed: any;
-  Profile: any;
-  Settings: any;
-};
+import MemberTabBar from "./MemberTabBar";
+import MyCarePortfolio from "../Screen/Portfolio/MyCarePortfolio";
+import MyMemberProfile from "../Screen/Profile/MyMemberProfile";
+import MyReimbursements from "../Screen/MyReimbursements/MyReimbursements";
+import PreventiveExam from "../Screen/PreventiveExam/PreventiveExam";
+import PreventiveExamList from "../Screen/PreventiveExam/PreventiveExamList";
+import MyPlanDetails from "../Screen/Plans/MyPlanDetails";
+import MakeClaim from "../Screen/Claim/MakeClaim";
 
 const BottomTab: any = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -47,6 +48,18 @@ function BottomTabNavigator() {
       <BottomTab.Screen name="Providers" component={Providers} />
       <BottomTab.Screen name="MyEarning" component={MyEarning} />
       <BottomTab.Screen name="Profile" component={MyProfile} />
+    </BottomTab.Navigator>
+  );
+}
+
+function MemberBottomTabNavigator() {
+  return (
+    <BottomTab.Navigator tabBar={MemberTabBar} screenOptions={{ headerShown: false }}>
+      <BottomTab.Screen name="MyCare" component={MyCarePortfolio} />
+      <BottomTab.Screen name="PreventiveExam" component={PreventiveExam} />
+      <BottomTab.Screen name="Provider" component={Providers} />
+      <BottomTab.Screen name="Profile" component={MyMemberProfile} />
+      <BottomTab.Screen name="MyReimbursements" component={MyReimbursements} />
     </BottomTab.Navigator>
   );
 }
@@ -71,6 +84,14 @@ function MainNavigator() {
       component: BottomTabNavigator,
       options: {
         headerTitle: "Home",
+        headerShown: false,
+      },
+    },
+    {
+      name: "MemberHome",
+      component: MemberBottomTabNavigator,
+      options: {
+        headerTitle: "MemberHome",
         headerShown: false,
       },
     },
@@ -143,6 +164,30 @@ function MainNavigator() {
       component: SelectPlanscreen,
       options: {
         headerTitle: "SelectPlanscreen",
+        headerShown: true,
+      },
+    },
+    {
+      name: "PreventiveExamList",
+      component: PreventiveExamList,
+      options: {
+        headerTitle: "PreventiveExamList",
+        headerShown: true,
+      },
+    },
+    {
+      name: "MyPlanDetails",
+      component: MyPlanDetails,
+      options: {
+        headerTitle: "MyPlanDetails",
+        headerShown: true,
+      },
+    },
+    {
+      name: "MakeClaim",
+      component: MakeClaim,
+      options: {
+        headerTitle: "MakeClaim",
         headerShown: true,
       },
     },

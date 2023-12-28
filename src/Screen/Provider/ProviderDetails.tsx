@@ -114,7 +114,13 @@ const ProviderDetails = ({ navigation, route }: any) => {
     navigation.setOptions({
       header: (props) => (
         <CustomHeader
-          title={route?.params?.toAdd ? "Add Member" : "Provider Details"}
+          title={
+            route?.params?.header
+              ? route?.params?.header
+              : route?.params?.toAdd
+              ? "Add Member"
+              : "Provider Details"
+          }
           navigation={navigation}
         />
       ),
@@ -149,30 +155,34 @@ const ProviderDetails = ({ navigation, route }: any) => {
     navigation.navigate("MakePayment");
   };
 
-
   return (
     <SafeAreaView style={{ backgroundColor: Colors.bg, flex: 1 }}>
       <ScrollView style={styles.container}>
         <View style={{ marginTop: 5, paddingBottom: 50 }}>
           <View style={styles.contactInfo}>
             <View>
-              {route?.params?.toAdd && <View style={styles.newHeader}>
-                <View style={styles.innerHeader}>
-                  <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Entypo
-                      name="chevron-thin-left"
-                      size={18}
-                      color="#332640"
-                    />
-                  </TouchableOpacity>
-                  <Text style={styles.welcome2}>{"  Back to Member"}</Text>
+              {route?.params?.toAdd && (
+                <View style={styles.newHeader}>
+                  <View style={styles.innerHeader}>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                      <Entypo
+                        name="chevron-thin-left"
+                        size={18}
+                        color="#332640"
+                      />
+                    </TouchableOpacity>
+                    <Text style={styles.welcome2}>{"  Back to Member"}</Text>
+                  </View>
+                  <View>
+                    <TouchableOpacity
+                      onPress={navigateTo}
+                      style={styles.skipBtn}
+                    >
+                      <Text style={styles.skipText}>{"Select"}</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
-                <View>
-                  <TouchableOpacity onPress={navigateTo} style={styles.skipBtn}>
-                    <Text style={styles.skipText}>{"Select"}</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>}
+              )}
               <EmployeeCard
                 {...{ name: "Alena Smith", id: "#FML1000M", status: "Covered" }}
               />
