@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { TextInput, View, Text, TouchableOpacity } from "react-native";
+import {
+  TextInput,
+  View,
+  Text,
+  TouchableOpacity,
+  Platform,
+} from "react-native";
 import { Icon } from "react-native-paper";
 import Feather from "react-native-vector-icons/Feather";
 import { Colors } from "../Helper/Colors";
@@ -36,28 +42,32 @@ const CustomTextInput = ({
         marginHorizontal: 5,
       }}
     >
-      {label &&<Text
-        style={{
-          marginBottom: 5,
-          fontSize: 16,
-          fontWeight: "500",
-          color: isFocused ? Colors.primaryColor : Colors.labelTxt,
-        }}
-      >
-        {label}
-      </Text>}
+      {label && (
+        <Text
+          style={{
+            marginBottom: 5,
+            fontSize: 16,
+            fontWeight: "500",
+            color: isFocused ? Colors.primaryColor : Colors.labelTxt,
+          }}
+        >
+          {label}
+        </Text>
+      )}
       <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          borderWidth: 1,
-          borderRadius: 30,
-          width: "100%",
-          padding: 12,
-          borderColor: isFocused
-            ? Colors.primaryColor
-            : Colors.commonBorderColor,
-        }}
+        style={[
+          {
+            flexDirection: "row",
+            alignItems: "center",
+            borderWidth: 1,
+            borderRadius: 30,
+            width: "100%",
+            borderColor: isFocused
+              ? Colors.primaryColor
+              : Colors.commonBorderColor,
+          },
+          Platform.OS === "ios" ? { padding: 12 } : { paddingHorizontal: 12 },
+        ]}
       >
         <TextInput
           style={{ flex: 1, fontSize: 16, fontWeight: "500", color: "#000" }}

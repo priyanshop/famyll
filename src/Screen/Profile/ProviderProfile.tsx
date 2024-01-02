@@ -12,7 +12,6 @@ import {
 } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import { Images } from "../../assets/index";
-import CustomButton from "../../Components/CustomButton";
 import CustomImageButton from "../../Components/CustomImageButton";
 import { Colors } from "../../Helper/Colors";
 
@@ -118,16 +117,16 @@ const ProviderProfile = ({ navigation, route }: any) => {
         imageStyle={styles.coverImage}
       />
       <View style={styles.profileNameView}>
-        <View style={{ flexDirection: "row" }}>
-          <View style={{ flex: 0.35 }}>
-            <Image
-              source={{
-                uri: "https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
-              }}
-              style={styles.profileImage}
-              resizeMode={"cover"}
-            />
-          </View>
+        <View style={{ flex: 0.5 }}>
+          <Image
+            source={{
+              uri: "https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50",
+            }}
+            style={styles.profileImage}
+            resizeMode={"cover"}
+          />
+        </View>
+        <View style={{ flexDirection: "row", flex: 0.5, alignSelf: "flex-end" }}>
           <View style={styles.ProfileCardView}>
             <Text style={styles.nameText}>{"Martin Smith"}</Text>
             <Text style={styles.heading3}>
@@ -136,7 +135,7 @@ const ProviderProfile = ({ navigation, route }: any) => {
             </Text>
           </View>
         </View>
-        <View style={{ flexDirection: "row",marginTop:2 }}>
+        <View style={{ flexDirection: "row", marginTop: 10 }}>
           <TouchableOpacity
             onPress={navigateToChangePassword}
             style={styles.button}
@@ -302,28 +301,30 @@ const styles = StyleSheet.create({
   },
   profileCard: {
     borderRadius: 16,
-    height: 224,
+    // height: 224,
     marginVertical: 10,
   },
   coverImage: {
     backgroundColor: "#C7AFDE",
-    flex: 0.5,
     borderTopStartRadius: 16,
     borderTopEndRadius: 16,
+    height: 112
   },
   profileNameView: {
     backgroundColor: "#FFFFFF",
-    flex: 0.55,
+    flex: 1,
     borderBottomStartRadius: 16,
     borderBottomRightRadius: 16,
+    padding:15
     // flexDirection: "row",
   },
   profileImage: {
     height: 90,
     width: 90,
-    marginTop: -45,
+    marginTop: -50,
     marginLeft: 15,
     borderRadius: 16,
+    position:"absolute"
   },
   ProfileCardView: {
     flex: 0.6,

@@ -1,10 +1,11 @@
 //@ts-nocheck
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { RadioButton } from "react-native-paper";
 import { Images } from "../../assets/index";
 import { Colors } from "../../Helper/Colors";
 import CustomButton from "../../Components/CustomButton";
+import SplashScreen from 'react-native-splash-screen'
 
 const UserTypeOption = ({
   option,
@@ -45,6 +46,10 @@ const SelectUserType = ({navigation,route}:any) => {
     { label: "Provider", value: "C" },
   ];
 
+  useEffect(() => {
+    SplashScreen.hide();
+  }, [])
+  
   const handleOptionChange = (value: any) => {
     setSelectedOption(value);
   };
