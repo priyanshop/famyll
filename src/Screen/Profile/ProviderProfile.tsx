@@ -306,14 +306,14 @@ const styles = StyleSheet.create({
   },
   coverImage: {
     backgroundColor: "#C7AFDE",
-    borderTopStartRadius: 16,
-    borderTopEndRadius: 16,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
     height: 112
   },
   profileNameView: {
     backgroundColor: "#FFFFFF",
     flex: 1,
-    borderBottomStartRadius: 16,
+    borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
     padding:15
     // flexDirection: "row",
